@@ -1,12 +1,10 @@
 import numpy as np
 import pandas as pd
-import tensorflow
-from keras.engine.saving import load_model
 from keras.layers import Dense
 from keras.models import Sequential
 from keras.utils import np_utils
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.preprocessing import LabelEncoder
 
 data = pd.read_csv("samples.csv", delimiter=',')
 
@@ -43,18 +41,18 @@ model.add(Dense(4, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.fit(features, targets, epochs=20)
 
-x_train, x_test, y_train, y_test = train_test_split(features, targets, test_size=0.33, random_state=42)
+x_train, x_test, y_train, y_test = train_test_split(features, targets, test_size=0.33, random_state=15)
 
-# test = pd.read_csv("test.csv", delimiter=',')
-# print(model.predict(test))
 results = model.predict(x_test)
 results = results.round()
+print(results)
+
+encoded_results = np.zeros((results.shape[0], 1), int)
 for i in range(results.shape[0]):
-    print(labelEncoder.inverse_transform(results[i]))
-print(results.round()[0])
-#print(np.argmax(results.round()))
-#print()
-print(labelEncoder.inverse_transform(encoded_Y))
+    encoded_results[i] = np.argmax(results[i])
+final_results = labelEncoder.inverse_transform(np.ravel(encoded_results))
+print(final_results)
+
 scores = model.evaluate(x_test, y_test, verbose=0)
 
 print('Accuracy: {}% \n Error: {}'.format(scores[1], 1 - scores[1]))
