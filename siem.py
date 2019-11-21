@@ -1,11 +1,10 @@
 import pandas as pd
-from keras.layers import Dense
-from keras.models import Sequential
+from keras.engine.saving import load_model
 from keras.utils import np_utils
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
-data = pd.read_csv("dataset.csv", delimiter=',')
+data = pd.read_csv("samples.csv", delimiter=',')
 
 labels = data['result']
 
@@ -32,14 +31,15 @@ encoded_Y = labelEncoder.transform(labels)
 print(encoded_Y.shape)
 targets = np_utils.to_categorical(encoded_Y)
 
-model = Sequential()
-model.add(Dense(45, activation='relu', input_dim=features.shape[1]))
-model.add(Dense(45, activation='relu'))
-# softmax => sum =1
-model.add(Dense(23, activation='softmax'))
-# adam optimizer => do not use learning rate
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(features, targets, epochs=1)
+# model = Sequential()
+# model.add(Dense(45, activation='relu', input_dim=features.shape[1]))
+# model.add(Dense(45, activation='relu'))
+# # softmax => sum =1
+# model.add(Dense(23, activation='softmax'))
+# # adam optimizer => do not use learning rate
+# model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+# model.fit(features, targets, epochs=1)
+model = load_model('NN.h5')
 
 ######"""# %split
 x_train, x_test, y_train, y_test = train_test_split(features, targets, test_size=0.33, random_state=15)
