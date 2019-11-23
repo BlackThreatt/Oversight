@@ -1,66 +1,74 @@
+import sys
+
+import numpy as np
 import pandas as pd
 from keras.engine.saving import load_model
 from keras.utils import np_utils
-from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
-data = pd.read_csv("samples.csv", delimiter=',')
+classes = pd.read_csv("classes.csv", delimiter=',')
+samples = pd.read_csv("samples.csv", delimiter=',')
 
-labels = data['result']
+labels = samples['result']
 
-features = data.iloc[:, :-1]
+features = samples.iloc[:, :-1]
+
+# save np.load
+np_load_old = np.load
+
+# modify the default parameters of np.load
+np.load = lambda *a, **k: np_load_old(*a, allow_pickle=True, **k)
+
 # encode the protocol type
 protocolTypeEncoder = LabelEncoder()
-protocolTypeEncoder.fit(features['protocol_type'])
+protocolTypeEncoder.classes_ = np.load('encodedProtocol.npy')
 features['protocol_type'] = protocolTypeEncoder.transform(features['protocol_type'])
 
 # service encoder
 serviceEncoder = LabelEncoder()
-serviceEncoder.fit(features['service'])
+serviceEncoder.classes_ = np.load('encodedService.npy')
 features['service'] = serviceEncoder.transform(features['service'])
 
 # flag encoder
 flagEncoder = LabelEncoder()
-flagEncoder.fit(features['flag'])
+flagEncoder.classes_ = np.load('encodedFlag.npy')
 features['flag'] = flagEncoder.transform(features['flag'])
 
 # label encoder
 labelEncoder = LabelEncoder()
-labelEncoder.fit(labels)
+labelEncoder.classes_ = np.load('encodedLabel.npy')
 encoded_Y = labelEncoder.transform(labels)
 print(encoded_Y.shape)
 targets = np_utils.to_categorical(encoded_Y)
 
-# model = Sequential()
-# model.add(Dense(45, activation='relu', input_dim=features.shape[1]))
-# model.add(Dense(45, activation='relu'))
-# # softmax => sum =1
-# model.add(Dense(23, activation='softmax'))
-# # adam optimizer => do not use learning rate
-# model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-# model.fit(features, targets, epochs=1)
-model = load_model('NN.h5')
+# restore np.load for future normal usage
+np.load = np_load_old
+
+model = load_model('NeuralNetwork.h5')
+
+results = model.predict(features)
+np.set_printoptions(threshold=sys.maxsize)
+print(results.round())
 
 ######"""# %split
-x_train, x_test, y_train, y_test = train_test_split(features, targets, test_size=0.33, random_state=15)
+# x_train, x_test, y_train, y_test = train_test_split(features, targets, test_size=0.33, random_state=15)
 
 ############# predict test split
 # results = model.predict(x_test)
 # results = results.round()
 # print(results)
+#
 
-###########""# reverse transform
-# encoded_results = np.zeros((results.shape[0], 1), int)
-# for i in range(results.shape[0]):
-#     encoded_results[i] = np.argmax(results[i])
-# final_results = labelEncoder.inverse_transform(np.ravel(encoded_results))
-# print(final_results)
+############ reverse transform
+encoded_results = np.zeros((results.shape[0], 1), int)
+for i in range(results.shape[0]):
+    encoded_results[i] = np.argmax(results[i])
+final_results = labelEncoder.inverse_transform(np.ravel(encoded_results))
+print(final_results)
 
 ######evaluation
-scores = model.evaluate(x_test, y_test, verbose=0)
 
-print('Accuracy: {}% \n Error: {}'.format(scores[1], 1 - scores[1]))
-
-# save neural networks state
-# model.save('NN.h5')
-# pretrained_model = load_model('classification_model.h5')
+# print(y_test)
+# scores = model.evaluate(x_test, y_test, verbose=0)
+#
+# print('Accuracy: {}% \n Error: {}'.format(scores[1], 1 - scores[1]))
