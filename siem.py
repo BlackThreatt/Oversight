@@ -10,22 +10,26 @@ from keras.utils import np_utils
 from sklearn.preprocessing import LabelEncoder
 
 mypath = 'users/'
+# get all users logs
 files = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
-es = Elasticsearch(['http://elastic:changeme@192.168.43.179:9200'])
 lastIndex = 0
+
 classes = pd.read_csv("classes.csv", delimiter=',')
 for file in files:
+    initialRows = pd.read_csv(mypath + file, delimiter=',').iloc[:, :]
     samples = pd.read_csv(mypath + file, delimiter=',')
 
     print(files)
 
-    labels = samples['result']
+    # intialize the labels
+    labels = classes['result']
 
-    features = samples.iloc[:, :-1]
-    initialRows = samples.iloc[:, :-1]
+    # initialize the features
+    features = samples.iloc[:, :]
 
-    # save np.load
+    ##### encode the features (preprocessing)
+    #### save np.load
     np_load_old = np.load
 
     # modify the default parameters of np.load
@@ -53,24 +57,29 @@ for file in files:
     print(encoded_Y.shape)
     targets = np_utils.to_categorical(encoded_Y)
 
-    # restore np.load for future normal usage
+    ##### restore np.load for future normal usage
     np.load = np_load_old
 
+    ###### load model
     model = load_model('NeuralNetwork.h5')
 
+    ###### predict
     results = model.predict(features)
 
+    ##initialize the econded results
     encoded_results = np.zeros((results.shape[0], 1), int)
 
+    es = Elasticsearch(['http://elastic:changeme@192.168.43.179:9200'])
     delemiterIndex = file.index('.')
     userid = file[:delemiterIndex]
     print('---------------------------------', userid)
     for i in range(results.shape[0]):
         encoded_results[i] = np.argmax(results[i])
+        ##Initialize the body
         doc = {
             'userID': userid,
             'type': labelEncoder.inverse_transform(np.ravel(encoded_results[i]))[0],
-            'body': initialRows.loc[i, :],
+            'body': pd.DataFrame(initialRows.loc[i, :]).to_string(),
             'timestamp': datetime.now(),
         }
         print(labelEncoder.inverse_transform(np.ravel(encoded_results[i])))
