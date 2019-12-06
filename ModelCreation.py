@@ -6,7 +6,7 @@ from keras.utils import np_utils
 from sklearn.preprocessing import LabelEncoder
 
 # load data from dataset
-data = pd.read_csv("dataset.csv", delimiter=',')
+data = pd.read_csv("dataset1.csv", delimiter=',')
 
 # get labels
 labels = data['result']
@@ -47,6 +47,6 @@ model.add(Dense(45, activation='relu'))
 model.add(Dense(23, activation='softmax'))
 ## adam optimizer => do not use learning rate
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(features, targets, epochs=20)
+model.fit(features, targets, epochs=1)
 
-model.save('NeuralNetwork.h5')
+model.save('NeuralNetworkTest.h5')
