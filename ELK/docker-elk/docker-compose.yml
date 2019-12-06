@@ -54,11 +54,7 @@ services:
         ELK_VERSION: $ELK_VERSION
 #    volumes:
 #      - type: bind
-#        source: ./kibana/config/kibana.yml    volumes:
-      - type: bind
-        source: ./kibana/config/kibana.yml
-        target: /usr/share/kibana/config/kibana.yml
-        read_only: true
+#        source: ./kibana/config/kibana.yml
 #        target: /usr/share/kibana/config/kibana.yml
 #        read_only: true
     ports:
