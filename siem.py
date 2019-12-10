@@ -69,7 +69,7 @@ for file in files:
     ##initialize the econded results
     encoded_results = np.zeros((results.shape[0], 1), int)
 
-    es = Elasticsearch(['http://elastic:changeme@192.168.43.179:9200'])
+    es = Elasticsearch(['http://elastic:changeme@localhost:9200'])
     delemiterIndex = file.index('.')
     userid = file[:delemiterIndex]
     print('---------------------------------', userid)
