@@ -1,15 +1,15 @@
 # Building a Security That Thinks
 In this workshop we will present the basics of artificial intelligence as well as an introduction to SIEM (Security Information & Event Management) with an emphasis on its usefulness and  we will present a prototype of an intrusion detection system using artificial intelligence.
 
-Presentation Link : 
+Here is our [Presentation]().
 
-Realized by: Mohamed Ali BESSAIDI & Mohamed Hichem ZAYANI & Mohamed OUNIS
+Realized by: Mohamed Ali BESSAIDI ([BlackThreatt](https://github.com/BlackThreatt)) & Mohamed Hichem ZAYANI ([MHZDeveloper](https://github.com/MHZDeveloper)) & Mohamed OUNIS ([ounismohamed](https://github.com/ounismohamed))
 
 # Description
 
 We have developed an intrusion detection system based on artificial intelligence. The model takes network-based data as input and thus predicts whether it is a normal connection or an attack. If it is an attack, the system also predicts the type of attack.
 
-the input data are composed of :
+The input data are composed of :
 
 
 * duration: continuous
@@ -54,7 +54,7 @@ the input data are composed of :
 * dst_host_rerror_rate: continuous
 * dst_host_srv_rerror_rate: continuous
 
-the results that our model can predict :
+The results that our model can predict :
 
 * back
 * buffer_overflow
@@ -80,11 +80,20 @@ the results that our model can predict :
 * warezclient
 * warezmaster
     
-To create this neural network model, we used the python programming language and the Keras library.
+To create this neural network model, we used the **Python** programming language and the **Keras** library.
 
-To have a better visibility, we used the ELK stack to have a graph that illustrates better the behavior of our network over time.
+To have a better visibility, we used the **ELK** stack to have a graph that illustrates better the behavior of our network over time.
 # Code Setup
+The **Python** used in this workshop is version **3.5.2**.
 
+Execute this command to be able to use the following libraries :
+
+    $ pip3 install numpy pandas sklearn keras elasticsearch
+Versions used in this workshop : 
+* Numpy (1.17.4) 
+* Pandas (0.24.2)
+* Sklearn (0.21.3)
+* Keras (2.3.1)
 # ELK Setup
 
 # DEMO

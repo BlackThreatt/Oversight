@@ -6,7 +6,7 @@ from keras.utils import np_utils
 from sklearn.preprocessing import LabelEncoder
 
 # load data from dataset
-data = pd.read_csv("dataset1.csv", delimiter=',')
+data = pd.read_csv("dataset.csv", delimiter=',')
 
 # get labels
 labels = data['result']
