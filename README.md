@@ -144,5 +144,25 @@ Now the ElasticSearch,Logstash and Kibana stack are basically a collection of we
         $- su - ${USER}
  
             
-2)  Now  that we have docker and docker-compose propperly installed 
+2)  Now  that we have docker and docker-compose properly installed , we open the terminal and we get to the docker directory in our project :
 
+        $- cd ~/Workspace/Siem/ELK/docker-elk/
+        
+3) Next we build the ELK Stack and start it with the following command :
+
+        $- docker-compose up -d 
+   
+==> This step might take somewhile :        
+
+4) Now we check the health of our elk stack , to do this we need to type the following command:
+
+        $- docker ps 
+        
+==> We should see 3 running containers , one for Elasticsearch , one for Logstash and the last one for Kibana .      
+  
+
+5) Now we can open the Kibana dashbord , in order to do this , go to your internet browser and type the following address :
+
+        http://localhost:5601
+        
+**This should display the Kibana login page , now user the username "elastic" and the password "changeme" to access the dashboard .** 
