@@ -97,6 +97,52 @@ Versions used in this workshop :
 * Keras (2.3.1)
 # ELK Setup
 
+Now the ElasticSearch,Logstash and Kibana stack are basically a collection of web applications that needs to communicate information to eachother. To assure that this ecosystem runs in the best conditions there is, we chose to deploy this stack on docker containers . 
+
+1) So the First step now is to Setup docker in your system . you can skip this step if you already have docker and docker-compose already installed and functionnal :
+
+* First of all we have to update the system , in order to do this , type the following command: 
+    
+        $- sudo apt update          
+    
+* Next we install the curl utility, in order to do this , type the following command:  :
 
 
-# DEMO
+        $- sudo apt install apt-transport-https ca-certificates curl software-properties-common
+      
+* Now we download the docker packages, in order to do this , type the following command:  :
+
+        $- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        
+* Next, we add the downloaded repository , in order to do this , type the following command:  :
+
+        $- sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+        
+* Now we update the system again so that the changes takes effect :
+
+        $- sudo apt update
+       
+* Then we add the docker-ce cache policy: 
+
+        $- apt-cache policy docker-ce docker-compose
+        
+* Finally now , we can run the install command : 
+
+        $- sudo apt install docker-ce docker-compose
+        
+* Now we check the docker daemon's status, and the docker-compose version : 
+
+        $- sudo systemctl status docker
+        $- docker-compose --version 
+        
+* Now we have to add the current user to the docker users groupe :
+
+        $- sudo usermod -aG docker ${USER}
+
+* Now we have to check that the user is now added to the goupe :
+
+        $- su - ${USER}
+ 
+            
+2)  Now  that we have docker and docker-compose propperly installed 
+
