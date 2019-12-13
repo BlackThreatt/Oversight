@@ -1,7 +1,7 @@
 # Building a Security That Thinks
 In this workshop we will present the basics of artificial intelligence as well as an introduction to SIEM (Security Information & Event Management) with an emphasis on its usefulness and  we will present a prototype of an intrusion detection system using artificial intelligence.
 
-Here is our [Presentation]().
+Here is our [Presentation](https://drive.google.com/open?id=16bd5i6ss-TRtOmjS7EdxXslJVgeeZfRD).
 
 Realized by: Mohamed Ali BESSAIDI ([BlackThreatt](https://github.com/BlackThreatt)) & Mohamed Hichem ZAYANI ([MHZDeveloper](https://github.com/MHZDeveloper)) & Mohamed OUNIS ([ounismohamed](https://github.com/ounismohamed))
 
@@ -89,11 +89,14 @@ The **Python** used in this workshop is version **3.5.2**.
 Execute this command to be able to use the following libraries :
 
     $ pip3 install numpy pandas sklearn keras elasticsearch
+    
 Versions used in this workshop : 
 * Numpy (1.17.4) 
 * Pandas (0.24.2)
 * Sklearn (0.21.3)
 * Keras (2.3.1)
 # ELK Setup
+
+
 
 # DEMO
