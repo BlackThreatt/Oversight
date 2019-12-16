@@ -114,7 +114,7 @@ In the file **Siem.py**, the model will predict the if the network is safe based
 
 Now the ElasticSearch,Logstash and Kibana stack are basically a collection of web applications that needs to communicate information to eachother. To assure that this ecosystem runs in the best conditions there is, we chose to deploy this stack on docker containers . 
 
-####First Step
+#### First Step
 
 So the First step now is to Setup docker in your system . you can skip this step if you already have docker and docker-compose already installed and functionnal :
 
@@ -162,13 +162,13 @@ So the First step now is to Setup docker in your system . you can skip this step
         $- su - ${USER}
  
 
-####Second Step
+#### Second Step
             
 Now  that we have docker and docker-compose properly installed , we open the terminal and we get to the docker directory in our project :
 
         $- cd ~/Workspace/Siem/ELK/docker-elk/
 
-####Third Step
+#### Third Step
         
 Next we build the ELK Stack and start it with the following command :
 
