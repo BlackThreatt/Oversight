@@ -47,6 +47,7 @@ model.add(Dense(45, activation='relu'))
 model.add(Dense(23, activation='softmax'))
 ## adam optimizer => do not use learning rate
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(features, targets, epochs=1)
+## train 20 times
+model.fit(features, targets, epochs=20)
 
 model.save('NeuralNetworkTest.h5')

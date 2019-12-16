@@ -86,17 +86,113 @@ To have a better visibility, we used the **ELK** stack to have a graph that illu
 # Code Setup
 The **Python** used in this workshop is version **3.5.2**.
 
+You need to install the **distutils** and the **setuptools** related to **Python 3** :
+
+    $- sudo apt install python3-distutils python3-setuptools
+
+You need also to install **pip3** :
+
+    $- sudo apt install python3-pip
+
 Execute this command to be able to use the following libraries :
 
-    $ pip3 install numpy pandas sklearn keras elasticsearch
+    $- pip3 install numpy pandas scikit-learn tensorflow keras elasticsearch
     
 Versions used in this workshop : 
 * Numpy (1.17.4) 
 * Pandas (0.24.2)
 * Sklearn (0.21.3)
+* Tensorflow (1.14.0)
 * Keras (2.3.1)
+
+In the file **ModelCreation.py**, you'll find how to create a model trained by the [Dataset](https://drive.google.com/open?id=1WEzi6vXPSq9HzrYfg7V0kKFtvKkuoazZ)
+20 times.
+
+In the file **Siem.py**, the model will predict the if the network is safe based on users logs.
+ 
 # ELK Setup
 
+Now the ElasticSearch,Logstash and Kibana stack are basically a collection of web applications that needs to communicate information to eachother. To assure that this ecosystem runs in the best conditions there is, we chose to deploy this stack on docker containers . 
+
+####First Step
+
+So the First step now is to Setup docker in your system . you can skip this step if you already have docker and docker-compose already installed and functionnal :
+
+* First of all we have to update the system , in order to do this , type the following command: 
+    
+        $- sudo apt update          
+    
+* Next we install the curl utility, in order to do this , type the following command:  :
 
 
-# DEMO
+        $- sudo apt install apt-transport-https ca-certificates curl software-properties-common
+      
+* Now we download the docker packages, in order to do this , type the following command:  :
+
+        $- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        
+* Next, we add the downloaded repository , in order to do this , type the following command:  :
+
+	$- pip3 install --upgrade requests
+        $- sudo add-apt-repository deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+        
+* Now we update the system again so that the changes takes effect :
+
+        $- sudo apt update
+       
+* Then we add the docker cache policy : 
+
+        $- apt-cache policy docker.io docker-compose
+        
+* Finally now , we can run the install command : 
+
+        $- sudo apt install docker.io docker-compose
+        
+* Now we check the docker daemon's status, and the docker-compose version : 
+
+        $- sudo systemctl status docker
+        $- docker-compose --version 
+        
+* Now we have to add the current user to the docker users groupe :
+
+        $- sudo usermod -aG docker ${USER}
+
+* Now we have to check that the user is now added to the goupe :
+
+        $- su - ${USER}
+ 
+
+####Second Step
+            
+Now  that we have docker and docker-compose properly installed , we open the terminal and we get to the docker directory in our project :
+
+        $- cd ~/Workspace/Siem/ELK/docker-elk/
+
+####Third Step
+        
+Next we build the ELK Stack and start it with the following command :
+
+        $- docker-compose up -d 
+   
+**This step might take somewhile :**         
+
+Now we check the health of our elk stack , to do this we need to type the following command:
+
+        $- docker ps 
+        
+**We should see 3 running containers , one for Elasticsearch , one for Logstash and the last one for Kibana .**      
+  
+
+Now we can open the Kibana dashbord , in order to do this , go to your internet browser and type the following address :
+
+        http://localhost:5601
+        
+**This should display the Kibana login page , now user the username "elastic" and the password "changeme" to access the dashboard .** 
+
+# Execution
+
+Run **Siem.py**.
+
+Kibana configuration
+
+# Screenshots
