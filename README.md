@@ -190,19 +190,19 @@ So the First step now is to Setup docker in your system . you can skip this step
  **This should display the Kibana login page , now user the username "elastic" and the password "changeme" to access the dashboard .** 
 
 6) Once the Kibana interface opens , you should be able to access the dashbords and all the graphics areas .
-    - now we need to load the dashboard config we make in this prototype , in order to do so go to the 
+    - Next we need to load the dashboard config we make in this prototype , in order to do so go to the 
     left menu and scroll down to the management icon , then under Kibana section , click on "Saved Objects".
     - On the top right corner of the interface , click on the "Import" Button.
-    -The import widget will open up , then click on import again , you'll be asked to choose a file 
+    - The import widget will open up , then click on import again , you'll be asked to choose a file 
     go to the project directory (~/Workspace/Siem/ELK/docker-elk/elasticsearch/config/) and choose "export.ndjson".
     Make sure the "automatically overwrite all saved objects" option is enabled , and then click on the bottom left blue "Import" Button 
-    - Now you have the dashboards configured , go ahead and click on the "Dashboards" option in the left menu and choose "Oversight Dashboard" choose the "This Week" filter and apply it .  
+    - Now that we have the dashboards configured , go ahead and click on the "Dashboard" option in the left menu and choose "Oversight Dashboard", then choose the "This Week" filter and apply it .  
 
 # Execution
 
 Run **Siem.py**.
 
-
+- This will start the simulation of the inbound events flow to our prototype , now every event that comes will have to be evaluated (With the rendered model) , classified (With the created neural network) , indexed (with Elasticsearch) and finally visualized on the dashboard (With Kibana).
 
 # Screenshots
 
