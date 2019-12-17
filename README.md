@@ -96,7 +96,7 @@ You need also to install **pip3** :
 
 Execute this command to be able to use the following libraries :
 
-    $- pip3 install numpy pandas scikit-learn tensorflow keras elasticsearch
+    $ pip3 install numpy pandas sklearn keras elasticsearch
     
 Versions used in this workshop : 
 * Numpy (1.17.4) 
@@ -140,13 +140,13 @@ So the First step now is to Setup docker in your system . you can skip this step
 
         $- sudo apt update
        
-* Then we add the docker cache policy : 
+* Then we add the docker-ce cache policy: 
 
-        $- apt-cache policy docker.io docker-compose
+        $- apt-cache policy docker-ce docker-compose
         
 * Finally now , we can run the install command : 
 
-        $- sudo apt install docker.io docker-compose
+        $- sudo apt install docker-ce docker-compose
         
 * Now we check the docker daemon's status, and the docker-compose version : 
 
@@ -164,35 +164,47 @@ So the First step now is to Setup docker in your system . you can skip this step
 
 #### Second Step
             
-Now  that we have docker and docker-compose properly installed , we open the terminal and we get to the docker directory in our project :
+2)  Now  that we have docker and docker-compose properly installed , we open the terminal and we get to the docker directory in our project :
 
         $- cd ~/Workspace/Siem/ELK/docker-elk/
 
 #### Third Step
         
-Next we build the ELK Stack and start it with the following command :
+3) Next we build the ELK Stack and start it with the following command :
 
         $- docker-compose up -d 
    
 **This step might take somewhile :**         
 
-Now we check the health of our elk stack , to do this we need to type the following command:
+4) Now we check the health of our elk stack , to do this we need to type the following command:
 
         $- docker ps 
         
 **We should see 3 running containers , one for Elasticsearch , one for Logstash and the last one for Kibana .**      
   
 
-Now we can open the Kibana dashbord , in order to do this , go to your internet browser and type the following address :
+5) Now we can open the Kibana dashbord , in order to do this , go to your internet browser and type the following address :
 
         http://localhost:5601
         
-**This should display the Kibana login page , now user the username "elastic" and the password "changeme" to access the dashboard .** 
+ **This should display the Kibana login page , now user the username "elastic" and the password "changeme" to access the dashboard .** 
+
+6) Once the Kibana interface opens , you should be able to access the dashbords and all the graphics areas .
+    - now we need to load the dashboard config we make in this prototype , in order to do so go to the 
+    left menu and scroll down to the management icon , then under Kibana section , click on "Saved Objects".
+    - On the top right corner of the interface , click on the "Import" Button.
+    -The import widget will open up , then click on import again , you'll be asked to choose a file 
+    go to the project directory (~/Workspace/Siem/ELK/docker-elk/elasticsearch/config/) and choose "export.ndjson".
+    Make sure the "automatically overwrite all saved objects" option is enabled , and then click on the bottom left blue "Import" Button 
+    - Now you have the dashboards configured , go ahead and click on the "Dashboards" option in the left menu and choose "Oversight Dashboard" choose the "This Week" filter and apply it .  
 
 # Execution
 
 Run **Siem.py**.
 
-Kibana configuration
+
 
 # Screenshots
+
+
+7) At this level you should be seeing the indexed information appearing in the different graphs , go ahead and play with the parameters as much as you want .. ! 
