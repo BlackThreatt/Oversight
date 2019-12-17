@@ -80,7 +80,7 @@ The results that our model can predict :
 * warezclient
 * warezmaster
     
-To create this neural network model, we used the **Python** programming language and the **Keras** library.
+To create this neural network model, we used the **Python** programming language and the **Keras** library on **Linux**.
 
 To have a better visibility, we used the **ELK** stack to have a graph that illustrates better the behavior of our network over time.
 # Code Setup
@@ -96,7 +96,7 @@ You need also to install **pip3** :
 
 Execute this command to be able to use the following libraries :
 
-    $ pip3 install numpy pandas sklearn keras elasticsearch
+    $ pip3 install numpy pandas scikit-learn tensorflow keras elasticsearch
     
 Versions used in this workshop : 
 * Numpy (1.17.4) 
@@ -133,7 +133,7 @@ So the First step now is to Setup docker in your system . you can skip this step
         
 * Next, we add the downloaded repository , in order to do this , type the following command:  :
 
-	$- pip3 install --upgrade requests
+        $- pip3 install --upgrade requests
         $- sudo add-apt-repository deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
         
 * Now we update the system again so that the changes takes effect :
@@ -170,13 +170,14 @@ So the First step now is to Setup docker in your system . you can skip this step
 
 #### Third Step
         
-3) Next we build the ELK Stack and start it with the following command :
+Next we build the ELK Stack and start it with the following command (**This step might take somewhile**) :
 
         $- docker-compose up -d 
-   
-**This step might take somewhile :**         
+            
 
-4) Now we check the health of our elk stack , to do this we need to type the following command:
+#### Fourth Step
+
+Now we check the health of our elk stack , to do this we need to type the following command (**We should see 3 running containers , one for Elasticsearch , one for Logstash and the last one for Kibana .**):
 
         $- docker ps 
         
@@ -189,14 +190,16 @@ So the First step now is to Setup docker in your system . you can skip this step
         
  **This should display the Kibana login page , now user the username "elastic" and the password "changeme" to access the dashboard .** 
 
-6) Once the Kibana interface opens , you should be able to access the dashbords and all the graphics areas .
-    - Next we need to load the dashboard config we made in this prototype , in order to do so go to the 
-    left menu and scroll down to the management icon , then under Kibana section , click on "Saved Objects".
-    - On the top right corner of the interface , click on the "Import" Button.
-    - The import widget will open up , then click on import again , you'll be asked to choose a file 
-    go to the project directory (~/Workspace/Siem/ELK/docker-elk/elasticsearch/config/) and choose "export.ndjson".
-    Make sure the "automatically overwrite all saved objects" option is enabled , and then click on the bottom left blue "Import" Button 
-    - Now that we have the dashboards configured , go ahead and click on the "Dashboard" option in the left menu and choose "Oversight Dashboard", then choose the "This Week" filter and apply it .  
+Next we need to load the dashboard config we make in this prototype , in order to do so, go to the 
+**left menu** and scroll down to **the management icon** , then under Kibana section , click on **"Saved Objects"**.
+
+On the top right corner of the interface , click on the **"Import"** Button.
+
+The import widget will open up , then click on import again , you'll be asked to choose a file 
+    go to the project directory **(~/Workspace/Siem/ELK/docker-elk/elasticsearch/config/)** and choose **"export.ndjson"**.
+    Make sure the **"automatically overwrite all saved objects"** option is **enabled** , and then click on the bottom left blue "Import" Button 
+
+Now that we have the dashboards configured , go ahead and click on the "Dashboard" option in the left menu and choose **"Oversight Dashboard"**, then choose the "This Week" filter and apply it .  
 
 # Execution
 
@@ -207,4 +210,24 @@ Run **Siem.py**.
 # Screenshots
 
 
-7) At this level you should be seeing the indexed information appearing in the different graphs , go ahead and play with the parameters as much as you want .. ! 
+At this level you should be seeing the indexed information appearing in the different graphs , go ahead and play with the parameters as much as you want .. !
+
+Screenshot 1 (not real data)
+
+![Screenshot1](images/1.png?raw=true)
+
+Screenshot 2 (not real data)
+
+![Screenshot2](images/2.png?raw=true)
+
+Screenshot 3 (real data)
+
+![Screenshot3](images/3.png?raw=true)
+
+Screenshot 4 (real data)
+
+![Screenshot4](images/4.png?raw=true)
+
+Screenshot 5 (real data)
+
+![Screenshot5](images/5.png?raw=true) 
