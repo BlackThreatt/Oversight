@@ -96,7 +96,7 @@ You need also to install **pip3** :
 
 Execute this command to be able to use the following libraries :
 
-    $ pip3 install numpy pandas sklearn keras elasticsearch
+    $ pip3 install numpy pandas scikit-learn tensorflow keras elasticsearch
     
 Versions used in this workshop : 
 * Numpy (1.17.4) 
