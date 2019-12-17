@@ -84,6 +84,8 @@ To create this neural network model, we used the **Python** programming language
 
 To have a better visibility, we used the **ELK** stack to have a graph that illustrates better the behavior of our network over time.
 # Code Setup
+**You need to download the project from this page in zip format and upzip it in the directory "~/Workspace/"** (or use the git clone command if you're familiar with it )
+
 The **Python** used in this workshop is version **3.5.2**.
 
 You need to install the **distutils** and the **setuptools** related to **Python 3** :
