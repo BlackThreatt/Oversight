@@ -108,11 +108,11 @@ Versions used in this workshop :
 In the file **ModelCreation.py**, you'll find how to create a model trained by the [Dataset](https://drive.google.com/open?id=1WEzi6vXPSq9HzrYfg7V0kKFtvKkuoazZ)
 20 times.
 
-In the file **Siem.py**, the model will predict the if the network is safe based on users logs.
+In the file **Siem.py**, the model will predict if the network is safe or not based on users logs.
  
 # ELK Setup
 
-Now the ElasticSearch,Logstash and Kibana stack are basically a collection of web applications that needs to communicate information to eachother. To assure that this ecosystem runs in the best conditions there is, we chose to deploy this stack on docker containers . 
+Now the ElasticSearch,Logstash and Kibana stack are basically a collection of web applications that needs to communicate information to each other. To assure that this ecosystem runs in the best conditions, there is we chose to deploy this stack on docker containers . 
 
 #### First Step
 
@@ -164,7 +164,7 @@ So the First step now is to Setup docker in your system . you can skip this step
 
 #### Second Step
             
-2)  Now  that we have docker and docker-compose properly installed , we open the terminal and we get to the docker directory in our project :
+Now  that we have docker and docker-compose properly installed , we open the terminal and we get to the docker directory in our project :
 
         $- cd ~/Workspace/Siem/ELK/docker-elk/
 
@@ -180,15 +180,15 @@ Next we build the ELK Stack and start it with the following command (**This step
 Now we check the health of our elk stack , to do this we need to type the following command (**We should see 3 running containers , one for Elasticsearch , one for Logstash and the last one for Kibana .**):
 
         $- docker ps 
-        
-**We should see 3 running containers , one for Elasticsearch , one for Logstash and the last one for Kibana .**      
-  
+             
+#### Fifth Step  
 
-5) Now we can open the Kibana dashbord , in order to do this , go to your internet browser and type the following address :
+Now we can open the Kibana dashboard , in order to do this , go to your internet browser and type the following address (**This should display the Kibana login page , now user the username "elastic" and the password "changeme" to access the dashboard .**):
 
         http://localhost:5601
-        
- **This should display the Kibana login page , now user the username "elastic" and the password "changeme" to access the dashboard .** 
+         
+#### Sixth Step
+Once the Kibana interface opens , you should be able to access the dashbords and all the graphics areas .
 
 Next we need to load the dashboard config we make in this prototype , in order to do so, go to the 
 **left menu** and scroll down to **the management icon** , then under Kibana section , click on **"Saved Objects"**.
@@ -199,13 +199,13 @@ The import widget will open up , then click on import again , you'll be asked to
     go to the project directory **(~/Workspace/Siem/ELK/docker-elk/elasticsearch/config/)** and choose **"export.ndjson"**.
     Make sure the **"automatically overwrite all saved objects"** option is **enabled** , and then click on the bottom left blue "Import" Button 
 
-Now that we have the dashboards configured , go ahead and click on the "Dashboard" option in the left menu and choose **"Oversight Dashboard"**, then choose the "This Week" filter and apply it .  
+Now that we have the dashboards configured , go ahead and click on the "Dashboard" option in the left menu and choose **"Oversight Dashboard"**, then choose the **"This Week"** filter and apply it .  
 
 # Execution
 
 Run **Siem.py**.
 
-- This will start the simulation of the inbound events flow to our prototype , now every event that comes will have to be evaluated (With the rendered model) , classified (With the created neural network) , indexed (with Elasticsearch) and finally visualized on the dashboard (With Kibana).
+This will start the simulation of the inbound events flow to our prototype , now every event that comes will have to be evaluated (With the rendered model) , classified (With the created neural network) , indexed (with Elasticsearch) and finally visualized on the dashboard (With Kibana).
 
 # Screenshots
 
